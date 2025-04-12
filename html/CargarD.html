@@ -37,15 +37,27 @@
                 </div>
                 <div class="input-box"> <!-- Contenedor para el campo de contraseña -->
                     <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span> <!-- Icono del campo de contraseña -->
-                    <input type="text" required id="curso"> <!-- Campo para la contraseña -->
-                    <label>Curso</label> <!-- Etiqueta para el campo de contraseña -->
+                    <select id="curso" required> <!-- Campo para el curso -->
+                        <option value="">Selecciona un curso</option>
+                        <option value="BTI">BTI</option>
+                        <option value="BTQ">BTQ</option>
+                        <option value="BTC">BTC</option>
+                    </select>
+                    <label>Curso</label> <!-- Etiqueta para el campo de curso -->
                 </div>
                 <div class="input-box"> <!-- Contenedor para el campo de contraseña -->
                     <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span> <!-- Icono del campo de contraseña -->
-                    <input type="text" required id="seccion"> <!-- Campo para la contraseña -->
-                    <label>Seccion</label> <!-- Etiqueta para el campo de contraseña -->
+                    <select id="seccion" required> <!-- Campo para la sección -->
+                        <option value="">Selecciona una sección</option>
+                        <option value="1ro">1ro</option>
+                        <option value="2do">2do</option>
+                        <option value="3ro">3ro</option>
+                    </select>
+                    <label>Seccion</label> <!-- Etiqueta para el campo de sección -->
                 </div>
                 <button type="submit" class="btn">confirmar asistencia</button> <!-- Botón de inicio de sesión -->
+                    <!-- Aquí va el mensaje de confirmación -->
+                <div id="mensajeConfirmacion" style="margin-top: 10px; color: #00ffae; font-weight: bold; text-align: center;"></div>
                 <div class="login-register"> <!-- Enlace a la página de registro -->
                     <p></p>
                     <p><a href="#" class="register-link"></a></p> <!-- Enlace a la sección de registro -->
@@ -61,4 +73,3 @@
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script> <!-- Biblioteca de íconos Ionicons (fallback para navegadores antiguos) -->
 </body>
 </html>
-

@@ -78,8 +78,6 @@ document.getElementById("loginform").addEventListener("submit", function(event) 
     cuadro.classList.remove("active-popup");
 });*/
 
-
-
 window.addEventListener("DOMContentLoaded", () => {
     const cuadro = document.querySelector(".cuadro");
     const loginlink = document.querySelector(".login-link");
@@ -87,7 +85,6 @@ window.addEventListener("DOMContentLoaded", () => {
     const btnPopup = document.querySelector(".btnLogin-popup");
     const iconClose = document.querySelector(".icon-close");
 
-    // Popup Login/Register toggle
     registerlink.addEventListener("click", () => {
         cuadro.classList.add("active");
     });
@@ -106,6 +103,12 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // Registro de asistencia
     const form = document.getElementById("loginform");
+    const mensaje = document.createElement("p");
+    mensaje.id = "mensajeConfirmacion";
+    mensaje.style.marginTop = "10px";
+    mensaje.style.textAlign = "center";
+    mensaje.style.fontWeight = "bold";
+    form?.appendChild(mensaje);
 
     if (form) {
         form.addEventListener("submit", function (event) {
@@ -117,7 +120,24 @@ window.addEventListener("DOMContentLoaded", () => {
             const seccion = document.getElementById("seccion").value.trim();
 
             if (!nombre || !apellido || !curso || !seccion) {
-                alert("Todos los campos son obligatorios.");
+                mensaje.textContent = "Por favor, completa todos los campos.";
+                mensaje.style.color = "red";
+                return;
+            }
+
+            const registros = JSON.parse(localStorage.getItem("asistencias")) || [];
+
+            // Verificar si ya existe el mismo nombre + apellido + curso + seccion
+            const yaRegistrado = registros.some(reg =>
+                reg.nombre.toLowerCase() === nombre.toLowerCase() &&
+                reg.apellido.toLowerCase() === apellido.toLowerCase() &&
+                reg.curso.toLowerCase() === curso.toLowerCase() &&
+                reg.seccion.toLowerCase() === seccion.toLowerCase()
+            );
+
+            if (yaRegistrado) {
+                mensaje.textContent = "Ya se registró esta asistencia.";
+                mensaje.style.color = "red";
                 return;
             }
 
@@ -129,16 +149,15 @@ window.addEventListener("DOMContentLoaded", () => {
                 fecha: new Date().toLocaleString()
             };
 
-            let registros = JSON.parse(localStorage.getItem("asistencias")) || [];
             registros.push(asistencia);
             localStorage.setItem("asistencias", JSON.stringify(registros));
 
-            alert("Asistencia registrada correctamente.");
+            mensaje.textContent = "✅ Asistencia Confirmada.";
+            mensaje.style.color = "green";
+
             form.reset();
-            cuadro.classList.remove("active-popup");
         });
     } else {
         console.error("No se encontró el formulario con id='loginform'");
     }
 });
-
