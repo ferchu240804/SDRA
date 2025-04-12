@@ -1,0 +1,64 @@
+<!DOCTYPE html> <!-- Define el tipo de documento como HTML -->
+<html lang="en"> <!-- Inicia el documento HTML con el lenguaje en inglés -->
+<head>
+    <meta charset="UTF-8"> <!-- Define la codificación de caracteres como UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Configura el diseño para adaptarse a dispositivos móviles -->
+    <title>SDRA</title> <!-- Título de la página -->
+    <link rel="stylesheet" href="/css/formulario.css" defer> <!-- Enlace al archivo CSS externo -->
+</head>
+<body>
+
+    <header> <!-- Sección de encabezado de la página -->
+        <h2 class="logo">SDRA</h2> <!-- Título o logo del sitio -->
+        <nav class="navegacion"> <!-- Menú de navegación -->
+            <a href="">Saber mas</a> <!-- Enlace a la página "Saber más" -->
+            <a href="">Contactos</a> <!-- Enlace a la página "Servicios" -->
+            <a href="">Instrucciones</a> <!-- Enlace a la página "Contactos" -->
+            <button class="btnLogin-popup">Cargar Datos</button> <!-- Botón para abrir el formulario de inicio de sesión -->
+            <div id="mensaje-error" style="color: red; display: none;"></div> <!-- Div para mostrar mensajes de error -->
+        </nav>
+    </header>
+
+    <form id="loginform"> <!-- Formulario principal de login -->
+    <div class="cuadro"> <!-- Contenedor principal para los formularios -->
+        <span class="icon-close"><ion-icon name="close-outline"></ion-icon></span> <!-- Icono para cerrar el formulario -->
+
+        <div class="form-box login"> <!-- Contenedor específico para el formulario de inicio de sesión -->
+            <h2>Registro de Asistencia</h2> <!-- Título del formulario de inicio de sesión -->
+                <div class="input-box"> <!-- Contenedor para el campo de usuario -->
+                    <span class="icon"><ion-icon name="mail-outline"></ion-icon></span> <!-- Icono del campo de usuario -->
+                    <input type="text" required id="USER"> <!-- Campo de texto para el nombre de usuario -->
+                    <label>Nombre</label> <!-- Etiqueta para el campo de texto -->
+                </div>
+                <div class="input-box"> <!-- Contenedor para el campo de contraseña -->
+                    <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span> <!-- Icono del campo de contraseña -->
+                    <input type="text" required id="apellido"> <!-- Campo para la contraseña -->
+                    <label>Apellido</label> <!-- Etiqueta para el campo de contraseña -->
+                </div>
+                <div class="input-box"> <!-- Contenedor para el campo de contraseña -->
+                    <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span> <!-- Icono del campo de contraseña -->
+                    <input type="text" required id="curso"> <!-- Campo para la contraseña -->
+                    <label>Curso</label> <!-- Etiqueta para el campo de contraseña -->
+                </div>
+                <div class="input-box"> <!-- Contenedor para el campo de contraseña -->
+                    <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span> <!-- Icono del campo de contraseña -->
+                    <input type="text" required id="seccion"> <!-- Campo para la contraseña -->
+                    <label>Seccion</label> <!-- Etiqueta para el campo de contraseña -->
+                </div>
+                <button type="submit" class="btn">confirmar asistencia</button> <!-- Botón de inicio de sesión -->
+                <div class="login-register"> <!-- Enlace a la página de registro -->
+                    <p></p>
+                    <p><a href="#" class="register-link"></a></p> <!-- Enlace a la sección de registro -->
+                </div>
+        
+                    <p><a href="#" class="login-link"></a></p> <!-- Enlace a la sección de login -->
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="/js/CargarD.js" defer></script> <!-- Archivo JS externo con defer para cargarlo después del HTML -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script> <!-- Biblioteca de íconos Ionicons (módulo) -->
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script> <!-- Biblioteca de íconos Ionicons (fallback para navegadores antiguos) -->
+</body>
+</html>
+
