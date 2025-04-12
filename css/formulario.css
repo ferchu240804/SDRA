@@ -22,7 +22,7 @@ body{
     justify-content: center; /* Centra horizontalmente el contenido */
     align-items: center; /* Centra verticalmente el contenido */
     min-height: 100vh; /* Asegura que el body tenga al menos el alto de la ventana */
-    background: url("/img/huellafondo.png")no-repeat; /* Establece una imagen de fondo sin repetirla */
+    background: url("../img/huellafondo.png") no-repeat;/* Establece una imagen de fondo sin repetirla */
     background-size: cover; /* Hace que la imagen de fondo cubra toda el área disponible */
     background-position: center; /* Centra la imagen de fondo */
 }
