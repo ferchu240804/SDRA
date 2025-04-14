@@ -85,6 +85,7 @@ window.addEventListener("DOMContentLoaded", () => {
     const btnPopup = document.querySelector(".btnLogin-popup");
     const iconClose = document.querySelector(".icon-close");
 
+    // Popup Login/Register toggle
     registerlink.addEventListener("click", () => {
         cuadro.classList.add("active");
     });
@@ -101,14 +102,17 @@ window.addEventListener("DOMContentLoaded", () => {
         cuadro.classList.remove("active-popup");
     });
 
-    // Registro de asistencia
     const form = document.getElementById("loginform");
-    const mensaje = document.createElement("p");
-    mensaje.id = "mensajeConfirmacion";
-    mensaje.style.marginTop = "10px";
-    mensaje.style.textAlign = "center";
-    mensaje.style.fontWeight = "bold";
-    form?.appendChild(mensaje);
+    const mensajeConfirmacion = document.getElementById("mensajeConfirmacion");
+
+    // Lista de estudiantes válidos para 3ro BTI
+    const listaEstudiantesBTI = [
+        "Johanna Miranda", "Octavio Mendieta", "Mell Campuzano", "Miguel Canale", "Rogelio Zarza", "Diego Hernandez",
+        "Fabricio Martinez", "Fernando Penayo", "Arianna Rojas", "Javier Navarro", "Leandro Caballero", "Elias Franco",
+        "Alexander Vidal", "Sofia Aranda", "Alejandro Garcete", "Juan Rojas", "Axel Medina", "Fernando Castillo",
+        "Giovanni Dominguez", "Blass Sosa", "Matias Leiva", "Fernando Villalba", "Julio Riquelme", "Enrique Heyer",
+        "Mauricio Sanchez", "Marcos Alonso", "Herwing Mongelos", "Alex Acosta", "Maximiliano Ramirez", "Fabricio Romero"
+    ];
 
     if (form) {
         form.addEventListener("submit", function (event) {
@@ -117,27 +121,40 @@ window.addEventListener("DOMContentLoaded", () => {
             const nombre = document.getElementById("USER").value.trim();
             const apellido = document.getElementById("apellido").value.trim();
             const curso = document.getElementById("curso").value.trim();
-            const seccion = document.getElementById("seccion").value.trim();
+            const seccion = document.getElementById("seccion").value.trim().toUpperCase(); // BTI, BTQ, BTC
 
             if (!nombre || !apellido || !curso || !seccion) {
-                mensaje.textContent = "Por favor, completa todos los campos.";
-                mensaje.style.color = "red";
+                mensajeConfirmacion.style.color = "red";
+                mensajeConfirmacion.textContent = "Todos los campos son obligatorios.";
                 return;
             }
 
-            const registros = JSON.parse(localStorage.getItem("asistencias")) || [];
+            // Validar si está en la lista de 3ro BTI
+            if (curso === "3ro" && seccion === "BTI") {
+                const nombreCompleto = `${nombre} ${apellido}`.toLowerCase();
+                const estaEnLista = listaEstudiantesBTI.some(est =>
+                    est.toLowerCase() === nombreCompleto
+                );
 
-            // Verificar si ya existe el mismo nombre + apellido + curso + seccion
+                if (!estaEnLista) {
+                    mensajeConfirmacion.style.color = "red";
+                    mensajeConfirmacion.textContent = "No estás en la lista autorizada para 3ro BTI.";
+                    return;
+                }
+            }
+
+            // Verificar duplicado
+            let registros = JSON.parse(localStorage.getItem("asistencias")) || [];
             const yaRegistrado = registros.some(reg =>
                 reg.nombre.toLowerCase() === nombre.toLowerCase() &&
                 reg.apellido.toLowerCase() === apellido.toLowerCase() &&
-                reg.curso.toLowerCase() === curso.toLowerCase() &&
-                reg.seccion.toLowerCase() === seccion.toLowerCase()
+                reg.curso === curso &&
+                reg.seccion.toUpperCase() === seccion
             );
 
             if (yaRegistrado) {
-                mensaje.textContent = "Ya se registró esta asistencia.";
-                mensaje.style.color = "red";
+                mensajeConfirmacion.style.color = "red";
+                mensajeConfirmacion.textContent = "Ya se ha registrado una asistencia con estos datos.";
                 return;
             }
 
@@ -152,9 +169,8 @@ window.addEventListener("DOMContentLoaded", () => {
             registros.push(asistencia);
             localStorage.setItem("asistencias", JSON.stringify(registros));
 
-            mensaje.textContent = "✅ Asistencia Confirmada.";
-            mensaje.style.color = "green";
-
+            mensajeConfirmacion.style.color = "#00ffae";
+            mensajeConfirmacion.textContent = "✔ Asistencia confirmada correctamente.";
             form.reset();
         });
     } else {
