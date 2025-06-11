@@ -77,7 +77,6 @@ document.getElementById("loginform").addEventListener("submit", function(event) 
     document.getElementById("loginform").reset();
     cuadro.classList.remove("active-popup");
 });*/
-
 window.addEventListener("DOMContentLoaded", () => {
     const cuadro = document.querySelector(".cuadro");
     const loginlink = document.querySelector(".login-link");
@@ -101,7 +100,21 @@ window.addEventListener("DOMContentLoaded", () => {
         cuadro.classList.remove("active-popup");
     });
 
-    // Registro de asistencia
+    // Lista válida de alumnos de 3ro BTI
+    const alumnosValidos3roBTI = [
+        { nombre: "fernando", apellido: "castillo" },
+        { nombre: "fabricio", apellido: "romero" },
+        { nombre: "octavio", apellido: "mendieta" },
+        { nombre: "diego", apellido: "hernandez" },
+        { nombre: "mell", apellido: "campuzano" },
+        { nombre: "sofia", apellido: "aranda" },
+        { nombre: "leandro", apellido: "caballero" },
+        { nombre: "johanna", apellido: "miranda" },
+        { nombre: "marco", apellido: "alonso" },
+        { nombre: "blass", apellido: "sosa" },
+        { nombre: "elias", apellido: "franco" }
+    ];
+
     const form = document.getElementById("loginform");
     const mensaje = document.createElement("p");
     mensaje.id = "mensajeConfirmacion";
@@ -114,10 +127,10 @@ window.addEventListener("DOMContentLoaded", () => {
         form.addEventListener("submit", function (event) {
             event.preventDefault();
 
-            const nombre = document.getElementById("USER").value.trim();
-            const apellido = document.getElementById("apellido").value.trim();
-            const curso = document.getElementById("curso").value.trim();
-            const seccion = document.getElementById("seccion").value.trim();
+            const nombre = document.getElementById("USER").value.trim().toLowerCase();
+            const apellido = document.getElementById("apellido").value.trim().toLowerCase();
+            const curso = document.getElementById("curso").value;
+            const seccion = document.getElementById("seccion").value;
 
             if (!nombre || !apellido || !curso || !seccion) {
                 mensaje.textContent = "Por favor, completa todos los campos.";
@@ -125,18 +138,30 @@ window.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
+            // Validar si está en la lista si seleccionó 3ro y BTI
+            if (curso === "3ro" && seccion === "BTI") {
+                const estaEnLista = alumnosValidos3roBTI.some(alumno =>
+                    alumno.nombre === nombre && alumno.apellido === apellido
+                );
+
+                if (!estaEnLista) {
+                    mensaje.textContent = "🚫 Este alumno no figura en la lista de 3ro BTI.";
+                    mensaje.style.color = "red";
+                    return;
+                }
+            }
+
             const registros = JSON.parse(localStorage.getItem("asistencias")) || [];
 
-            // Verificar si ya existe el mismo nombre + apellido + curso + seccion
             const yaRegistrado = registros.some(reg =>
-                reg.nombre.toLowerCase() === nombre.toLowerCase() &&
-                reg.apellido.toLowerCase() === apellido.toLowerCase() &&
-                reg.curso.toLowerCase() === curso.toLowerCase() &&
-                reg.seccion.toLowerCase() === seccion.toLowerCase()
+                reg.nombre === nombre &&
+                reg.apellido === apellido &&
+                reg.curso === curso &&
+                reg.seccion === seccion
             );
 
             if (yaRegistrado) {
-                mensaje.textContent = "Este alumno ya ha registrado su";
+                mensaje.textContent = "Este alumno ya ha registrado su asistencia.";
                 mensaje.style.color = "red";
                 return;
             }
@@ -161,3 +186,4 @@ window.addEventListener("DOMContentLoaded", () => {
         console.error("No se encontró el formulario con id='loginform'");
     }
 });
+
