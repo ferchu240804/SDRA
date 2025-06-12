@@ -136,7 +136,7 @@ window.addEventListener("DOMContentLoaded", () => {
     form?.appendChild(mensaje);
 
     if (form) {
-        form.addEventListener("submit", function (event) {
+        fowrm.addEventListener("submit", function (event) {
             event.preventDefault();
 
             const nombre = document.getElementById("USER").value.trim().toLowerCase();
@@ -160,9 +160,23 @@ window.addEventListener("DOMContentLoaded", () => {
                     mensaje.textContent = "🚫 Este alumno no figura en la lista de 3ro BTI.";
                     mensaje.style.color = "red";
                     return;
+            
                 }
-            }
+            }    
+            
+            if (curso === "3ro" && seccion === "BTI") {
+                const estaEnLista = alumnosValidos3roBTI.some(alumno =>
+                    alumno.nombre === nombre && alumno.apellido === apellido
+                );
 
+                if (!estaEnLista) {
+                    mensaje.textContent = "🚫 Este alumno no figura en la lista de 3ro BTI.";
+                    mensaje.style.color = "red";
+                    return;
+                }
+            }    
+
+        
 
 
 
