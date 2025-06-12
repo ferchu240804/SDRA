@@ -136,7 +136,7 @@ window.addEventListener("DOMContentLoaded", () => {
     form?.appendChild(mensaje);
 
     if (form) {
-        fowrm.addEventListener("submit", function (event) {
+        form.addEventListener("submit", function (event) {
             event.preventDefault();
 
             const nombre = document.getElementById("USER").value.trim().toLowerCase();
