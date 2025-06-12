@@ -103,16 +103,12 @@ window.addEventListener("DOMContentLoaded", () => {
     // Lista válida de alumnos de 3ro BTI
     const alumnosValidos3roBTI = [
         { nombre: "fernando", apellido: "castillo" },
-        { nombre: "fabricio", apellido: "romero" },
-        { nombre: "octavio", apellido: "mendieta" },
         { nombre: "diego", apellido: "hernandez" },
         { nombre: "mell", apellido: "campuzano" },
         { nombre: "sofia", apellido: "aranda" },
-        { nombre: "leandro", apellido: "caballero" },
         { nombre: "johanna", apellido: "miranda" },
-        { nombre: "marco", apellido: "alonso" },
         { nombre: "blass", apellido: "sosa" },
-        { nombre: "elias", apellido: "franco" }
+
     ];
 
     const form = document.getElementById("loginform");
