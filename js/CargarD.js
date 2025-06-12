@@ -121,19 +121,6 @@ window.addEventListener("DOMContentLoaded", () => {
     { nombre: "isaac", apellido: "gaona" },
     ]
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     //Linea de codigo de alumnos  de 1ro BTI hecho por Fer
     const alumnosValidos1roBTI = [
         { nombre: "gonzalo", apellido: "fernandez" },
