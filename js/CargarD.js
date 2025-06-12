@@ -114,18 +114,6 @@ window.addEventListener("DOMContentLoaded", () => {
         { nombre: "blass", apellido: "sosa" },
         { nombre: "elias", apellido: "franco" }
     ];
-    
-    //linea de codigo de alimnos de 3ro BTC
-    const alumnosValidos3roBTC = [
-    { nombre: "damian", apellido: "castillo" },
-    { nombre: "isaac", apellido: "gaona" },
-    ]
-
-    //Linea de codigo de alumnos  de 1ro BTI hecho por Fer
-    const alumnosValidos1roBTI = [
-        { nombre: "gonzalo", apellido: "fernandez" },
-        { nombre: "carlos", apellido: "coronel" }
-    ]
 
     const form = document.getElementById("loginform");
     const mensaje = document.createElement("p");
@@ -163,32 +151,8 @@ window.addEventListener("DOMContentLoaded", () => {
             
                 }
             }    
-            //validar lista si esta en 3ro BTC de diego
-            if (curso === "3ro" && seccion === "BTC") {
-                const lista3roBTC = alumnosValidos3roBTC.some(alumno =>
-                    alumno.nombre === nombre && alumno.apellido === apellido
-                );
-
-                if (!lista3roBTC) {
-                    mensaje.textContent = "🚫 Este alumno no figura en la lista de 3ro BTI.";
-                    mensaje.style.color = "red";
-                    return;
-                }
-            }    
-            // Validar si está en la lista si seleccionó 1ro y BTI hecho por fer
-            if (curso === "1ro" && seccion === "BTI") {
-                const Lista1roBTI = alumnosValidos1roBTI.some(alumno =>
-                    alumno.nombre === nombre && alumno.apellido === apellido
-                );
-
-                if (!Lista1roBTI) {
-                    mensaje.textContent = "🚫 Este alumno no figura en la lista de 1ro BTI.";
-                    mensaje.style.color = "red";
-                    return;
-                }
-            }
-
-
+            
+        
             const registros = JSON.parse(localStorage.getItem("asistencias")) || [];
 
             const yaRegistrado = registros.some(reg =>
