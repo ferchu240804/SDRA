@@ -121,6 +121,25 @@ window.addEventListener("DOMContentLoaded", () => {
     { nombre: "isaac", apellido: "gaona" },
     ]
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //Linea de codigo de alumnos  de 1ro BTI hecho por Fer
+    const alumnosValidos1roBTI = [
+        { nombre: "gonzalo", apellido: "fernandez" },
+        { nombre: "carlos", apellido: "coronel" }
+    ]
+
     const form = document.getElementById("loginform");
     const mensaje = document.createElement("p");
     mensaje.id = "mensajeConfirmacion";
@@ -156,6 +175,48 @@ window.addEventListener("DOMContentLoaded", () => {
                     return;
                 }
             }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            // Validar si está en la lista si seleccionó 1ro y BTI hecho por fer
+            if (curso === "1ro" && seccion === "BTI") {
+                const Lista1roBTI = alumnosValidos1roBTI.some(alumno =>
+                    alumno.nombre === nombre && alumno.apellido === apellido
+                );
+
+                if (!Lista1roBTI) {
+                    mensaje.textContent = "🚫 Este alumno no figura en la lista de 1ro BTI.";
+                    mensaje.style.color = "red";
+                    return;
+                }
+            }
+
 
             const registros = JSON.parse(localStorage.getItem("asistencias")) || [];
 
