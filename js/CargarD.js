@@ -114,6 +114,12 @@ window.addEventListener("DOMContentLoaded", () => {
         { nombre: "blass", apellido: "sosa" },
         { nombre: "elias", apellido: "franco" }
     ];
+    
+    //linea de codigo de alimnos de 3ro BTC
+    const alumnosValidos3roBTC = [
+    { nombre: "damian", apellido: "castillo" },
+    { nombre: "isaac", apellido: "gaona" },
+    ]
 
     const form = document.getElementById("loginform");
     const mensaje = document.createElement("p");
