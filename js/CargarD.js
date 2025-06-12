@@ -163,48 +163,18 @@ window.addEventListener("DOMContentLoaded", () => {
             
                 }
             }    
-            
-            if (curso === "3ro" && seccion === "BTI") {
-                const estaEnLista = alumnosValidos3roBTI.some(alumno =>
+            //validar lista si esta en 3ro BTC de diego
+            if (curso === "3ro" && seccion === "BTC") {
+                const lista3roBTC = alumnosValidos3roBTC.some(alumno =>
                     alumno.nombre === nombre && alumno.apellido === apellido
                 );
 
-                if (!estaEnLista) {
+                if (!lista3roBTC) {
                     mensaje.textContent = "🚫 Este alumno no figura en la lista de 3ro BTI.";
                     mensaje.style.color = "red";
                     return;
                 }
             }    
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             // Validar si está en la lista si seleccionó 1ro y BTI hecho por fer
             if (curso === "1ro" && seccion === "BTI") {
                 const Lista1roBTI = alumnosValidos1roBTI.some(alumno =>
